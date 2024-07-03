@@ -1,0 +1,201 @@
+<style>
+
+    /** Color pallete **/
+    /** Text #160706 **/
+    /** Primary #C84945 **/
+    /** Secondary #ddba8b **/
+    /** Accent #D5BA71 **/
+    /** Preview https://www.realtimecolors.com/?colors=160706-fbf1f0-c84945-ddba8b-d5ba71&fonts=Inter-Inter **/
+
+    .header {
+        background: #C84945;
+        overflow: hidden;
+    }
+    .inside{
+        padding-right: 32px;
+    }
+    .header h1 {
+        color: aliceblue;
+        font-size: 17px;
+        text-align: center;
+        float: left;
+        padding: 2px 16px;
+        text-decoration: none;
+    }
+    .header button {
+        background-color: #C84945;
+        color: aliceblue;
+        font-size: 17px;
+        text-align: center;
+        float: right;
+        padding: 14px 16px;
+        text-decoration: none;
+        cursor: pointer;
+        border: none;
+        transition: 0.2s;
+    }
+    .header button:hover {
+        background-color: #ddba8b;
+        color: #160706;
+    }
+    .contentBox {
+        padding: 16px 32px;
+        margin: 14px 14px 14px 40%;
+        width: 300px;
+        background: #d8cece;
+        box-shadow: 6px 6px #aaa6a6;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        min-width: 300px;
+    }
+    .contentBox input {
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        position: relative;
+        border: 2px solid #999;
+        margin: 10px;
+        padding: 10px;
+        width: 200px;
+        transition: 0.2s;
+    }
+    .contentBox input[type=text]:focus {
+        border: 2px solid #777;
+        background-color: #f0e7e7;
+    }
+    .contentBox select {
+        padding: 10px;
+        margin: 10px;
+        width: 150px;
+        border: 2px solid #999;
+    }
+    .submitButton {
+        padding: 10px;
+        margin: 15px;
+        width: 60px;
+        height: 30px;
+        background-color: #ddba8b;
+        border: 2px solid #927959;
+        transition: 0.1s;
+    }
+    .submitButton:hover {
+        background-color: #f8ce97;
+        border: 2px solid #ddba8b;
+        cursor: pointer;
+    }
+    input:invalid {
+        background-color: #c98b88;
+    }
+    .inputBox {
+        background: #ece4e4;
+    }
+    .dropdown {
+        min-width: 225px;
+        position: relative;
+        margin: 10px;
+    }
+    .dropdown * {
+        box-sizing: border-box;
+
+    }
+    .select {
+        background: #ece4e4;
+        color: #111;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border: 2px rgb(118, 118, 118) solid;
+        border-radius: 2px;
+        padding: 10px;
+        cursor: pointer;
+        transition: background 0.2s;
+    }
+    .select-clicked {
+        border: 2px #ccc5c5 solid;
+        box-shadow: 0 0 16px #ccc5c5;
+    }
+    .select:hover {
+        background: #ccc5c5;
+    }
+    .caret {
+        width: 0;
+        height: 0;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-top: 6px solid #8d8989;
+        transition: 0.2s;
+    }
+    .caret-rotate {
+        transform: rotate(180deg);
+    }
+    .menu {
+        list-style: none;
+        padding: 6px 8px;
+        background: #ccc5c5;
+        border: 1px rgb(118, 118, 118) solid;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        border-radius: 2px;
+        color: #111;
+        position: absolute;
+        top: 30px;
+        left: 50%;
+        width: 100%;
+        transform: translateX(-50%);
+        z-index: 1;
+        transition: 0.2s;
+        display: none;
+        opacity: 0;
+    }   
+    .menu li {
+        border-bottom: #111 solid 1px;
+        padding: 10px 6px;
+        margin: 4px 0;
+        border-radius: 2px;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+    .menu li:hover {
+        background: #ece4e4;
+        font-size: 120%;
+        color: #C84945;
+    }
+    .active {
+        background: #ece4e4;
+    }
+    .menu-open {
+        display: block;
+        opacity: 1;
+
+    }
+</style>
+
+<div class="header">
+    <div class="inside">
+        <b><h1>CRUD App</h1></b>
+        <button (click)="back('')">Back</button>
+    </div>
+</div>
+<div class="contentBox">
+    <form name="Form" onsubmit="addPerson()">
+        <input class="inputBox" type="text" id="fName" pattern="[A-Za-z]{1,12}" required (keyup)="onKey($event, 'fName')" placeholder="First Name" [value]="FNAME">
+        <input class="inputBox" type="text" id="lName" pattern="[A-Za-z]{1,12}" required (keyup)="onKey($event, 'lName')" placeholder="Last Name" [value]="LNAME">
+        <input class="inputBox" type="text" id="prof" pattern="[A-Za-z]{1,50}" required (keyup)="onKey($event, 'prof')" placeholder="Profession" [value]="PROF">
+        <input class="inputBox" type="date" id="age" required [value]="AGE">
+        <div class="dropdown">
+            <div class="select" (click)="selectFunc()">
+                <span class="selected">Gender</span>
+                <div class="caret"></div>
+            </div>
+            <ul class="menu">
+                <li name="Male" (click)="optionFunc('Male')">Male</li>
+                <li name="Female" (click)="optionFunc('Female')">Female</li>
+                <li name="Other" (click)="optionFunc('Other')">Other</li>
+            </ul>
+        </div>
+        <br>
+        <br>
+        <input type="button" value="Finish" class="submitButton" (click)="addElement()" style="width: 225px;">
+        <input type="button" value="Cancel" class="submitButton" (click)="back('')" style="width: 225px;">
+    </form>
+</div>

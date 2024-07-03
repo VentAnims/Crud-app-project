@@ -1,0 +1,109 @@
+<style>
+
+    /** Color pallete **/
+    /** Text #160706 **/
+    /** Primary #C84945 **/
+    /** Secondary #ddba8b **/
+    /** Accent #D5BA71 **/
+    /** Preview https://www.realtimecolors.com/?colors=160706-fbf1f0-c84945-ddba8b-d5ba71&fonts=Inter-Inter **/
+
+    .header {
+        background: #C84945;
+        overflow: hidden;
+    }
+    .inside{
+        padding-right: 32px;
+    }
+    .header h1 {
+        color: aliceblue;
+        font-size: 17px;
+        text-align: center;
+        float: left;
+        padding: 2px 16px;
+        text-decoration: none;
+    }
+    .header button {
+        background-color: #C84945;
+        color: aliceblue;
+        font-size: 17px;
+        text-align: center;
+        float: right;
+        padding: 14px 16px;
+        text-decoration: none;
+        cursor: pointer;
+        border: none;
+        transition: 0.2s;
+    }
+    .header button:hover {
+        background-color: #ddba8b;
+        color: #160706;
+    }
+    .contentBox {
+        padding: 16px 32px;
+        margin: 14px 10%;
+        background: #d8cece;
+        box-shadow: 6px 6px #aaa6a6;
+    }
+    .contentBox .table a{
+        padding: 0px 10px;
+    }
+    .contentBox .element {
+        background-color: #fae8b6;
+        padding: 10px;
+        margin-top: 6px;
+        margin-bottom: 6px;
+        outline: solid #D5BA71;
+        border-radius: 6px;
+    }
+    .element {
+        margin-bottom: 5px;
+    }
+    .element a {
+        padding: 0px 15px;
+    }
+    .element button {
+        float: right;
+        margin: 0px 16px;
+        background: #ddba8b;
+        border: none;
+        cursor: pointer;
+        margin-top: -10px;
+        padding: 13px;
+    }
+    .editButton:hover, .deleteButton:hover {
+        background: #C84945;
+    }
+    footer {
+        position:fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        text-align: center;
+        padding: 3px;
+        background-color: rgb(177, 115, 94);
+        color: white;
+        margin: auto;
+    }
+</style>
+
+<div class="header">
+    <div class="inside">
+        <b><h1>CRUD App</h1></b>
+        <button (click)="navigate('/form')">New</button>
+    </div>
+</div>
+
+
+<div class="contentBox">
+    <div class="table">
+        <a>First Name</a>
+        <a>Last Name</a>
+        <a>Profession</a>
+        <a>Age</a>
+        <a>Gender</a>
+    </div>
+</div>
+
+<footer>
+    <p>Created by: Ventsislav K.</p>
+</footer>
